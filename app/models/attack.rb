@@ -1,10 +1,10 @@
-class Attacks < ApplicationRecord    
+class Attack < ApplicationRecord    
     validate :age_of_victims
-    #belongs_to :monsters
-    #belongs_to :victims
+    belongs_to :monster
+    belongs_to :victim
     def age_of_victims
-        m=Monsters.find(monster_id)
-        v=Victims.find(victim_id)
+        m=Monster.find(monster_id)
+        v=Victim.find(victim_id)
         age=Time.now.utc.to_date.year - (v.birthdate.year) - 
             ((Time.now.utc.to_date.month > v.birthdate.month && Time.now.utc.to_date.day > v.birthdate.day) ? 0 : 1)
             
